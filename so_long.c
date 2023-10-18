@@ -1,13 +1,24 @@
 #include <mlx.h>
 #include "./printf/ft_printf.h"
+#include <fcntl.h>
 
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
+	char	**map;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		img_width;
+	int		img_height;
 }				t_data;
+
+typedef struct m_data {
+	void	*mlx;
+	void	*mlx_win;
+	int		nmr_columnas;
+
+} main_data;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -19,16 +30,25 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
 	t_data	img;
+	main_data gnrl;
+	int	fd;
+	char	*relative_path = "./sprites/tesla_front.xpm";
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	fd = open(relative_path, O_RDONLY);
+	printf("%d\n", fd);
+	close(fd);
+	
+	gnrl.mlx = mlx_init();
+	gnrl.mlx_win = mlx_new_window(gnrl.mlx, 1920, 1080, "Hello world!");
+	img.img = mlx_xpm_file_to_image(gnrl.mlx, relative_path,  &(img.img_width), &(img.img_height));
+
+	if (img.img == NULL)
+		return(printf("SALTO ERROR!!!!\n"));
+	else
+		printf("width: %i\n", img.img_width);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	my_mlx_pixel_put(&img, 100, 100, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 100,100);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(gnrl.mlx, gnrl.mlx_win, img.img, 50, 50);
+	mlx_loop(gnrl.mlx);
 }
