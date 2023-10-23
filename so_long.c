@@ -9,32 +9,24 @@ void		ft_new_sprite(char *relative_path, t_image *img)
 									&img->endian);
 }
 
-/* void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 4));
-	*(unsigned int*)dst = color;
-} */
-
-void	main(void)
+int	main(void)
 {
 	t_image	*img;
-	int	fd;
-	char	*relative_path = "./sprites/lab_floor.xpm";
-	img = NULL;
-	fd = open(relative_path, O_RDONLY);
-	printf("%d\n", fd);
-	close(fd);
+	char *map_path;
+
+	map_path = "map.ber";
 
 	img = (t_image *)malloc(sizeof(t_image));
-	printf("ERROR ACA!!!!!");
 	img->mlx = mlx_init();
 	img->mlx_win = mlx_new_window(img->mlx, 1920, 1080, "Hello world!");
 	img->img_width = 1920;
 	img->img_height = 1080;
 	
-	ft_new_sprite(relative_path, img);
-	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 50, 50);
+	ft_printf("ABAJO DE SAVE MAP\n");
+	save_map(map_path, img);
+	ft_put_map(img);
+	ft_put_object(img);
+	ft_put_pj(img);
 	mlx_loop(img->mlx);
+	return (0);
 }
