@@ -9,6 +9,18 @@ void		ft_new_sprite(char *relative_path, t_image *img)
 									&img->endian);
 }
 
+int	key_hook(int keycode, t_image *img)
+{
+	if (keycode == 53)
+	{
+		mlx_clear_window(img->mlx, img->mlx_win);
+		mlx_destroy_window(img->mlx, img->mlx_win);
+		exit(0);
+	}
+	ft_moves(keycode, img);
+	return (0);
+}
+
 int	main(void)
 {
 	t_image	*img;
@@ -17,16 +29,18 @@ int	main(void)
 	map_path = "map.ber";
 
 	img = (t_image *)malloc(sizeof(t_image));
+
 	img->mlx = mlx_init();
 	img->mlx_win = mlx_new_window(img->mlx, 1920, 1080, "Hello world!");
 	img->img_width = 1920;
 	img->img_height = 1080;
 	
-	ft_printf("ABAJO DE SAVE MAP\n");
 	save_map(map_path, img);
 	ft_put_map(img);
 	ft_put_object(img);
 	ft_put_pj(img);
+
+	mlx_key_hook(img->mlx_win, key_hook, img);
 	mlx_loop(img->mlx);
 	return (0);
 }

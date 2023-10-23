@@ -62,6 +62,8 @@ void	ft_put_pj(t_image *img)
         {
             if (img->map[y][x] == 'P')
             {
+                img->x_pos = x;
+                img->y_pos = y;
                 ft_new_sprite(object, img);
 	            mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, x * 50, y * 50);
             }
