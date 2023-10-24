@@ -26,9 +26,10 @@ int	main(void)
 	t_image	*img;
 	char *map_path;
 
+	img = (t_image *)malloc(sizeof(t_image));
 	map_path = "map.ber";
 
-	img = (t_image *)malloc(sizeof(t_image));
+	img->battery = 0;
 
 	img->mlx = mlx_init();
 	img->mlx_win = mlx_new_window(img->mlx, 1920, 1080, "Hello world!");

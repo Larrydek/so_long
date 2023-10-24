@@ -22,6 +22,7 @@ typedef struct	s_data {
 	int		nmr_columnas;
 	int		x_pos;
 	int		y_pos;
+	int		battery;
 }				t_image;
 
 void    ft_new_sprite(char *relative_path, t_image *img);
@@ -30,6 +31,12 @@ void	save_map(char *path, t_image *img);
 void	ft_put_map(t_image *img);
 void	ft_put_object(t_image *img);
 void	ft_put_pj(t_image *img);
+void	ft_put_exit(t_image *img);
+
 void    ft_moves(int key, t_image *img);
+void    ft_move_down(t_image *img);
+void    ft_move_up(t_image *img);
+void    ft_move_left(t_image *img);
+void    ft_move_right(t_image *img);
 
 #endif

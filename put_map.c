@@ -39,6 +39,7 @@ void	ft_put_object(t_image *img)
         {
             if (img->map[y][x] == 'C')
             {
+                img->battery += 1;
                 ft_new_sprite(object, img);
 	            mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, x * 50, y * 50);
             }
@@ -64,6 +65,29 @@ void	ft_put_pj(t_image *img)
             {
                 img->x_pos = x;
                 img->y_pos = y;
+                ft_new_sprite(object, img);
+	            mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, x * 50, y * 50);
+            }
+            x++;
+        }
+        y++;
+    }
+}
+
+void	ft_put_exit(t_image *img)
+{
+	char	*object = "sprites/Delorean.xpm";
+    int x;
+    int y;
+
+    y = 0;
+    while (img->map[y])
+    {
+        x = 0;
+        while (img->map[y][x] != '\0' && img->map[y][x] != '\n')
+        {
+            if (img->map[y][x] == 'E')
+            {
                 ft_new_sprite(object, img);
 	            mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, x * 50, y * 50);
             }
