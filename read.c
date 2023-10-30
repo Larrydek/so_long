@@ -32,7 +32,7 @@ void	ft_save_map(t_image *img, char *path)
 	fd = open(path, O_RDONLY);
 	y = ft_y_axis(path);
 
-	img->map = (char **)malloc((y + 1) * sizeof(char *));
+	img->map = (char **)malloc(y  * sizeof(char *));
 
 	while (i < y)
 	{
@@ -40,5 +40,4 @@ void	ft_save_map(t_image *img, char *path)
 	   ft_printf("%s\n", img->map[i]);
 	   i++;
 	}
-	img->map[i] = NULL;
 }

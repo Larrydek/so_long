@@ -31,9 +31,9 @@ void    ft_new_sprite(char *relative_path, t_image *img);
 int		ft_y_axis(char *path);
 void	ft_save_map(t_image *img, char *path);
 void	ft_put_map(t_image *img);
-int    ft_check_map(t_image *img, char *map_path);
-int    ft_check_wall_x(t_image *img);
-int    ft_check_wall_y(t_image *img);
+int    	ft_check_map(t_image *img, char *map_path);
+int    	ft_check_wall_x(t_image *img);
+int    	ft_check_wall_y(t_image *img);
 
 void	ft_put_object(t_image *img);
 void	ft_put_pj(t_image *img);

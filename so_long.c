@@ -27,19 +27,19 @@ int	ft_so_long(void)
 	char *map_path;
 
 	img = (t_image *)malloc(sizeof(t_image));
-	map_path = "map.ber";
+	map_path = "./maps/map.ber";
 
 	ft_save_map(img, map_path);
 	
 	if (!ft_check_map(img, map_path))
 		return (0);
 	
-	img->battery = 0;
 	img->mlx = mlx_init();
 	img->img_width = img->x_len * 50;
 	img->img_height = img->y_len * 50;
 	img->mlx_win = mlx_new_window(img->mlx, img->img_width, img->img_height, "Hello world!");
 	
+	img->battery = 0;
 	ft_put_map(img);
 	ft_put_object(img);
 	ft_put_pj(img);

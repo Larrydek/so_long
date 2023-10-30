@@ -5,8 +5,8 @@ int     ft_check_map(t_image *img, char *map_path)
     img->x_len = ft_strlen(img->map[0]) - 1;
     img->y_len = ft_y_axis(map_path);
 
-    ft_printf("CHECK WALL X: %i", ft_check_wall_x(img));
-    ft_printf("CHECK WALL Y: %i", ft_check_wall_y(img));
+    ft_printf("CHECK WALL X: %i\n", ft_check_wall_x(img));
+    ft_printf("CHECK WALL Y: %i\n", ft_check_wall_y(img));
     if (ft_check_wall_x(img) && ft_check_wall_y(img))
         return (1);
     return (0);
