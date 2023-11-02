@@ -7,12 +7,12 @@ void	ft_put_map(t_image *img)
     int x;
     int y;
 
+    x = 0;
     y = 0;
-    while (img->map[y])
+    while (y < img->y_len)
     {
         x = 0;
-        //ft_printf("LINEA: %i: %s\n", y, img->map[y]);
-        while (img->map[y][x] != '\0' && img->map[y][x] != '\n')
+        while (x < img->x_len)
         {
             if (img->map[y][x] == '1')
                 ft_new_sprite(column, img);
@@ -31,11 +31,12 @@ void	ft_put_object(t_image *img)
     int x;
     int y;
 
+    x = 0;
     y = 0;
-    while (img->map[y])
+    while (y < img->y_len)
     {
         x = 0;
-        while (img->map[y][x] != '\0' && img->map[y][x] != '\n')
+        while (x < img->x_len)
         {
             if (img->map[y][x] == 'C')
             {
@@ -56,10 +57,10 @@ void	ft_put_pj(t_image *img)
     int y;
 
     y = 0;
-    while (img->map[y])
+    while (y < img->y_len)
     {
         x = 0;
-        while (img->map[y][x] != '\0' && img->map[y][x] != '\n')
+        while (x < img->x_len)
         {
             if (img->map[y][x] == 'P')
             {
@@ -81,11 +82,12 @@ void	ft_put_exit(t_image *img)
     int x;
     int y;
 
+    x = 0;
     y = 0;
-    while (img->map[y])
+    while (y < img->y_len)
     {
         x = 0;
-        while (img->map[y][x] != '\0' && img->map[y][x] != '\n')
+        while (x < img->x_len)
         {
             if (img->map[y][x] == 'E')
             {

@@ -1,9 +1,9 @@
 NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -lmlx -framework OpenGL -framework AppKit -g3 -fsanitize=address
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit #-g3 -fsanitize=address
 RM = rm -f
-SRC = so_long.c read.c put_map.c moves.c check_map.c
+SRC = so_long.c read.c put_map.c moves.c check_map.c flood_fill.c
 
 OBJ = $(SRC:.c=.o)
 

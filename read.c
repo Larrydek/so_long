@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-int	ft_y_axis(char *path)
+int		ft_y_axis(char *path)
 {
 	int y;
 	int bytes;
@@ -18,8 +18,26 @@ int	ft_y_axis(char *path)
 		if (buffer[0] == '\n')
 			y++;
 	}
+	if (buffer[0] == '\n')
+		return (0);
 	close(fd);
 	return (y);
+}
+//hacer una funcion para x_len//
+int		ft_x_axis(t_image *img)
+{
+	int i;
+	int x_len;
+
+	i = 0;
+	x_len = ft_strlen(img->map[0]);
+	while (i < img->y_len)
+	{
+		if (x_len != (int)ft_strlen(img->map[i]))
+			return (0);
+		i++;
+	}
+	return (x_len);
 }
 
 void	ft_save_map(t_image *img, char *path)
@@ -34,10 +52,15 @@ void	ft_save_map(t_image *img, char *path)
 
 	img->map = (char **)malloc(y  * sizeof(char *));
 
-	while (i < y)
+	while (i < y - 1)
 	{
 	   img->map[i] = get_next_line(fd);
+	   img->map[i][ft_strlen(img->map[i]) - 1] = '\0';
 	   ft_printf("%s\n", img->map[i]);
+	   ft_printf("%i\n", ft_strlen(img->map[i]));
 	   i++;
 	}
+	img->map[i] = get_next_line(fd);
+	ft_printf("%s\n", img->map[i]);
+	ft_printf("%i\n", ft_strlen(img->map[i]));
 }

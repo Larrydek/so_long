@@ -21,36 +21,55 @@ int	key_hook(int keycode, t_image *img)
 	return (0);
 }
 
-int	ft_so_long(void)
+void	ft_show_things(t_image *img)
 {
-	t_image	*img;
-	char *map_path;
-
-	img = (t_image *)malloc(sizeof(t_image));
-	map_path = "./maps/map.ber";
-
-	ft_save_map(img, map_path);
-	
-	if (!ft_check_map(img, map_path))
-		return (0);
-	
 	img->mlx = mlx_init();
 	img->img_width = img->x_len * 50;
 	img->img_height = img->y_len * 50;
 	img->mlx_win = mlx_new_window(img->mlx, img->img_width, img->img_height, "Hello world!");
 	
-	img->battery = 0;
 	ft_put_map(img);
 	ft_put_object(img);
 	ft_put_pj(img);
 
 	mlx_key_hook(img->mlx_win, key_hook, img);
 	mlx_loop(img->mlx);
+}
+
+void	leaks(void)
+{
+	system("leaks -q so_long");
+}
+
+int	ft_so_long(char *argv)
+{
+	t_image	*img;
+	char *map_path;
+
+	atexit(leaks);
+	img = (t_image *)malloc(sizeof(t_image));
+	map_path = argv;
+
+	img->battery = 0;
+	img->pj = 0;
+	img->exit = 0;
+	img->count_moves = 0;
+	ft_save_map(img, map_path);
+
+	if (!ft_check_map(img, map_path))
+		return (free(img), 0);
+	ft_show_things(img);
+	
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	ft_so_long();
+	if (argc != 2)
+	{
+		ft_printf("HAY ALGO MAL, TIENE QUE HABER 2 ARGUMENTOIS");
+		return (0);
+	}
+	ft_so_long(argv[1]);
 	return(0);
 }
