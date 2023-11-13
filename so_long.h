@@ -43,8 +43,8 @@ int    	ft_check_map(t_image *img, char *map_path);
 int     ft_check_letters(t_image *img);
 int    	ft_check_wall_x(t_image *img);
 int    	ft_check_wall_y(t_image *img);
-int		ft_topology_check(void);
-t_image	*ft_copy_map(void);
+int		ft_topology_check(char *map_path);
+t_image	*ft_copy_map(char *map_path);
 void	ft_check_pj_pos(t_image *copy_img);
 void	ft_flood_fill(t_image *copy_img, int y, int x);
 int 	check_fill(t_image *copy_img);
@@ -61,5 +61,7 @@ void    ft_move_left(t_image *img);
 void    ft_move_right(t_image *img);
 void	ft_collector(t_image *img);
 int		ft_so_long(char *argv);
+void	free_matrix(char **matrix, t_image *img);
+void 	free_struct(t_image *img);
 
 #endif

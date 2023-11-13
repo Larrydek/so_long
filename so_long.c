@@ -4,7 +4,7 @@ void		ft_new_sprite(char *relative_path, t_image *img)
 {
 	img->img = mlx_xpm_file_to_image(img->mlx, relative_path,  &img->img_width, &img->img_height);
 	if (img->img == NULL)
-		printf("SALTO ERROR!!!!\n");
+		printf("SALTO ERROR EN MLX!!!!\n");
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length,
 									&img->endian);
 }
@@ -15,6 +15,7 @@ int	key_hook(int keycode, t_image *img)
 	{
 		mlx_clear_window(img->mlx, img->mlx_win);
 		mlx_destroy_window(img->mlx, img->mlx_win);
+		free_struct(img);
 		exit(0);
 	}
 	ft_moves(keycode, img);
@@ -46,8 +47,8 @@ int	ft_so_long(char *argv)
 	t_image	*img;
 	char *map_path;
 
-	atexit(leaks);
 	img = (t_image *)malloc(sizeof(t_image));
+	printf("img %p\n", img);
 	map_path = argv;
 
 	img->battery = 0;
@@ -57,14 +58,15 @@ int	ft_so_long(char *argv)
 	ft_save_map(img, map_path);
 
 	if (!ft_check_map(img, map_path))
-		return (free(img), 0);
+		return (0);
 	ft_show_things(img);
-	
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
+	atexit(leaks);
+
 	if (argc != 2)
 	{
 		ft_printf("HAY ALGO MAL, TIENE QUE HABER 2 ARGUMENTOIS");

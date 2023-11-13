@@ -1,29 +1,53 @@
 NAME = so_long
+
+SRC = so_long.c read.c put_map.c moves.c check_map.c flood_fill.c utils.c
+
+OBJS = $(SRC:.c=.o)
+
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra
+#CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit #-g3 -fsanitize=address
-RM = rm -f
-SRC = so_long.c read.c put_map.c moves.c check_map.c flood_fill.c
-
-OBJ = $(SRC:.c=.o)
 
 
-$(NAME) : $(OBJ)
-	@${MAKE} -C ./Libft
-	@${MAKE} -C ./GNL
-	@${MAKE} -C ./printf
-	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) ./Libft/libft.a ./GNL/get_next_line.a  ./printf/libftprintf.a -o $(NAME)
+LIBFT_DIR = ./Libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-all : $(NAME)
+PRINTF_DIR = ./printf
+PRINTF = $(PRINTF_DIR)/libftprintf.a
 
-%.o: %.c
-	gcc $(CFLAGS) -c -o $@ $<
+GNL_DIR = ./GNL
+GNL = $(GNL_DIR)/get_next_line.a
+
+all: $(NAME)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+$(PRINTF):
+	make -C $(PRINTF_DIR)
+
+$(GNL):
+	make -C $(GNL_DIR)
+
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(GNL)
+	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) \
+	-L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf -L$(GNL_DIR) -lget_next_line -o $(NAME)
+
+%.o: %.c ./Libft/libft.h ./printf/libftprintf.h ./GNL/get_next_line.h
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(GNL_DIR) -c $< -o $@
 
 clean:
-	@${MAKE} -C ./Libft fclean
-	@${MAKE} -C ./GNL fclean
-	@${MAKE} -C ./printf fclean
-	@$(RM) $(OBJ)
+	rm -f $(OBJS)
+	make clean -C $(LIBFT_DIR)
+	make clean -C $(PRINTF_DIR)
+	make clean -C $(GNL_DIR)
+
 fclean: clean
-	@$(RM) $(NAME)
+	rm -f $(NAME)
+	make fclean -C $(LIBFT_DIR)
+	make fclean -C $(PRINTF_DIR)
+	make fclean -C $(GNL_DIR)
+
+
 re: fclean all

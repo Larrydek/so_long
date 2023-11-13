@@ -51,6 +51,8 @@ void	ft_save_map(t_image *img, char *path)
 	y = ft_y_axis(path);
 
 	img->map = (char **)malloc(y  * sizeof(char *));
+	printf("ft_save_map %p\n", img->map);
+
 
 	while (i < y - 1)
 	{

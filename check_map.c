@@ -14,7 +14,7 @@ int		ft_check_map(t_image *img, char *map_path)
 	ft_printf("X_LEN = %i\n", img->x_len);
 	ft_printf("CHECK_WALL X: %i\n", ft_check_wall_x(img));
 	ft_printf("CHECK_WALL Y: %i\n", ft_check_wall_y(img));
-	if (ft_check_wall_x(img) && ft_check_wall_y(img) && ft_check_letters(img) && ft_topology_check())
+	if (ft_check_wall_x(img) && ft_check_wall_y(img) && ft_check_letters(img) && ft_topology_check(map_path))
 		return (1);
 	ft_printf("ERROR, EL MAPA FALLÓ\n");
 	return (0);

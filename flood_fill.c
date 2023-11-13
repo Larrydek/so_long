@@ -1,10 +1,14 @@
 #include "so_long.h"
 
-int	ft_topology_check(void)
+int	ft_topology_check(char *map_path)
 {
 	t_image *copy_img;
 
-	copy_img = ft_copy_map();
+	printf("AS:;NDA;DSMN;ASDMN\n");
+	copy_img = ft_copy_map(map_path);
+	if (!copy_img)
+		return (0);
+	printf("AS:;NDA;DSMN;ASDMN\n");
 	ft_check_pj_pos(copy_img);
 	if (copy_img->battery == 0 | copy_img->pj != 1 | copy_img->exit != 1)
 	{
@@ -12,25 +16,28 @@ int	ft_topology_check(void)
 		ft_printf("BATERÍAS: %i\n", copy_img->battery);
 		ft_printf("PJ: %i\n", copy_img->pj);
 		ft_printf("EXIT: %i\n", copy_img->exit);
-		return (free(copy_img), 0);
+		printf("AS:;NDA;DSMN;ASDMN\n");
+		return (free_struct(copy_img), 0);
 	}
 	ft_flood_fill(copy_img, copy_img->y_pos, copy_img->x_pos);
+	printf("ft_copy_map %p\n", copy_img);
 	if (check_fill(copy_img))
-		return (1);
+		return (free_struct(copy_img), 1);
 	else
-		return (0);
+		return (free_struct(copy_img), 0);
 }
 
-t_image *ft_copy_map(void)
+t_image *ft_copy_map(char *map_path)
 {
 	t_image	*copy_img;
-	char *map_path;
 
 	copy_img = (t_image *)malloc(sizeof(t_image));
-	map_path = "./maps/map.ber";
+	if (!copy_img)
+		return (0);
+	printf("ft_copy_map %p\n", copy_img);
 	ft_save_map(copy_img, map_path);
-	copy_img->x_len = ft_x_axis(copy_img);
 	copy_img->y_len = ft_y_axis(map_path);
+	copy_img->x_len = ft_x_axis(copy_img);
 	copy_img->battery = 0;
 	copy_img->pj = 0;
 	copy_img->exit = 0;
