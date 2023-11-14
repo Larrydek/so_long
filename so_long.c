@@ -47,15 +47,17 @@ int	ft_so_long(char *argv)
 	t_image	*img;
 	char *map_path;
 
-	img = (t_image *)malloc(sizeof(t_image));
-	printf("img %p\n", img);
+	printf("HASTA ACÁ LLEGAMO\n");
 	map_path = argv;
-
+	img = (t_image *)malloc(sizeof(t_image));
+	if (!img)
+		return (0);
 	img->battery = 0;
 	img->pj = 0;
 	img->exit = 0;
 	img->count_moves = 0;
 	ft_save_map(img, map_path);
+	printf("*img %p\n", img);
 
 	if (!ft_check_map(img, map_path))
 		return (0);

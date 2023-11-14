@@ -5,7 +5,7 @@ void    free_matrix(char **matrix, t_image *img)
 	int i;
 
 	i = 0;
-	printf("%i Y_LEN!!!:::!::\n", img->y_len);
+	printf("Y_LEN!!!:: %i \n", img->y_len);
 	while (i < img->y_len)
 	{
 		printf("[%i]: %s\n", i, matrix[i]);

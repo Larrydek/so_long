@@ -4,11 +4,9 @@ int	ft_topology_check(char *map_path)
 {
 	t_image *copy_img;
 
-	printf("AS:;NDA;DSMN;ASDMN\n");
 	copy_img = ft_copy_map(map_path);
 	if (!copy_img)
 		return (0);
-	printf("AS:;NDA;DSMN;ASDMN\n");
 	ft_check_pj_pos(copy_img);
 	if (copy_img->battery == 0 | copy_img->pj != 1 | copy_img->exit != 1)
 	{
@@ -16,13 +14,12 @@ int	ft_topology_check(char *map_path)
 		ft_printf("BATERÍAS: %i\n", copy_img->battery);
 		ft_printf("PJ: %i\n", copy_img->pj);
 		ft_printf("EXIT: %i\n", copy_img->exit);
-		printf("AS:;NDA;DSMN;ASDMN\n");
 		return (free_struct(copy_img), 0);
 	}
 	ft_flood_fill(copy_img, copy_img->y_pos, copy_img->x_pos);
 	printf("ft_copy_map %p\n", copy_img);
 	if (check_fill(copy_img))
-		return (free_struct(copy_img), 1);
+		return (1);
 	else
 		return (free_struct(copy_img), 0);
 }
@@ -113,7 +110,7 @@ int check_fill(t_image *copy_img)
 			if (FLOOD_FILL_CHARS(copy_img->map[y][x]) == 1)
 			{
 				ft_printf("NO SE CONECTA EL PJ, BATERIAS Y SALIDA\n");
-				return (0);
+				return (free_struct(copy_img), 0);
 			}
 			x++;
 		}

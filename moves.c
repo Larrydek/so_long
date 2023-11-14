@@ -22,8 +22,7 @@ void    ft_moves(int key, t_image *img)
 		ft_printf("GANASTE CAMPEÓN");
 		mlx_clear_window(img->mlx, img->mlx_win);
 		mlx_destroy_window(img->mlx, img->mlx_win);
-		// free(img);
-		// free_matrix(img->map);
+		free_struct(img);
 		exit(0);
 	}
 }
