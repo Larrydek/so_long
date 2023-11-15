@@ -9,6 +9,7 @@
 # include "Libft/libft.h"
 #define FLOOD_FILL_CHARS(c) ((c == '0') || (c == 'C') || (c == 'E'))
 #define MAP_CHARS(c) ((c == '0') || (c == 'C') || (c == 'E') || (c == 'P') || (c == '\n') || (c == '1'))
+#define CHECK_FILL_CHARS(c) ((c == 'C') || (c == 'E'))
 
 
 typedef struct	s_data {
@@ -63,5 +64,6 @@ void	ft_collector(t_image *img);
 int		ft_so_long(char *argv);
 void	free_matrix(char **matrix, t_image *img);
 void 	free_struct(t_image *img);
+int		free_and_close(t_image *img);
 
 #endif

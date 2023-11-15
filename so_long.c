@@ -12,12 +12,7 @@ void		ft_new_sprite(char *relative_path, t_image *img)
 int	key_hook(int keycode, t_image *img)
 {
 	if (keycode == 53)
-	{
-		mlx_clear_window(img->mlx, img->mlx_win);
-		mlx_destroy_window(img->mlx, img->mlx_win);
-		free_struct(img);
-		exit(0);
-	}
+		free_and_close(img);
 	ft_moves(keycode, img);
 	return (0);
 }
@@ -34,6 +29,7 @@ void	ft_show_things(t_image *img)
 	ft_put_pj(img);
 
 	mlx_key_hook(img->mlx_win, key_hook, img);
+	mlx_hook(img->mlx_win, 17, 0, free_and_close, img);
 	mlx_loop(img->mlx);
 }
 
@@ -47,7 +43,7 @@ int	ft_so_long(char *argv)
 	t_image	*img;
 	char *map_path;
 
-	printf("HASTA ACÁ LLEGAMO\n");
+	//printf("HASTA ACÁ LLEGAMO\n");
 	map_path = argv;
 	img = (t_image *)malloc(sizeof(t_image));
 	if (!img)
@@ -61,7 +57,10 @@ int	ft_so_long(char *argv)
 	ft_save_map(img, map_path);
 	printf("*img %p\n", img);
 	if (!ft_check_map(img, map_path))
+	{
+		ft_printf("ERROR: EL MAPA NO CUMPLE CON LOS REQUISITOS\n");
 		return (free_struct(img), 0);
+	}
 	else
 		ft_show_things(img);
 	return (0);
@@ -69,7 +68,7 @@ int	ft_so_long(char *argv)
 
 int	main(int argc, char **argv)
 {
-	atexit(leaks);
+	//atexit(leaks);
 
 	if (argc != 2)
 	{

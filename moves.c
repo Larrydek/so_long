@@ -20,10 +20,7 @@ void    ft_moves(int key, t_image *img)
 	if (img->map[img->y_pos][img->x_pos] == 'E' && img->battery == 0)
 	{
 		ft_printf("GANASTE CAMPEÓN");
-		mlx_clear_window(img->mlx, img->mlx_win);
-		mlx_destroy_window(img->mlx, img->mlx_win);
-		free_struct(img);
-		exit(0);
+		free_and_close(img);
 	}
 }
 

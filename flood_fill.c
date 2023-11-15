@@ -10,7 +10,7 @@ int	ft_topology_check(char *map_path)
 	ft_check_pj_pos(copy_img);
 	if (copy_img->battery == 0 | copy_img->pj != 1 | copy_img->exit != 1)
 	{
-		ft_printf("Error: 0 Baterías o PJ o EXIT\n");
+		ft_printf("Error: Baterías, PJ o EXIT\n");
 		ft_printf("BATERÍAS: %i\n", copy_img->battery);
 		ft_printf("PJ: %i\n", copy_img->pj);
 		ft_printf("EXIT: %i\n", copy_img->exit);
@@ -107,7 +107,7 @@ int check_fill(t_image *copy_img)
 		while (x < copy_img->x_len)
 		{
 			ft_printf("%c", copy_img->map[y][x]);
-			if (FLOOD_FILL_CHARS(copy_img->map[y][x]) == 1)
+			if (CHECK_FILL_CHARS(copy_img->map[y][x]) == 1)
 			{
 				ft_printf("NO SE CONECTA EL PJ, BATERIAS Y SALIDA\n");
 				return (0);
