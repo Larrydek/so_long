@@ -2,18 +2,22 @@
 
 int		ft_check_map(t_image *img, char *map_path)
 {
-	img->y_len = ft_y_axis(map_path);
-	img->x_len = ft_x_axis(img);
+	printf("ACA SI LLEGO \n");
+	if (!img->map)
+		return (0);
 
+	img->y_len = ft_y_axis(map_path);
 	ft_printf("Y_LEN = %i\n", img->y_len);
+
+	img->x_len = ft_x_axis(img);
 	ft_printf("X_LEN = %i\n", img->x_len);
+
 	if ((img->y_len < 2) || (img->x_len < 2))
 		return (0);
 	ft_printf("CHECK_WALL X: %i\n", ft_check_wall_x(img));
 	ft_printf("CHECK_WALL Y: %i\n", ft_check_wall_y(img));
-	if (ft_check_wall_x(img) && ft_check_wall_y(img) && ft_check_letters(img) && ft_topology_check(map_path))
+	if (ft_check_letters(img) && ft_check_wall_x(img) && ft_check_wall_y(img) && ft_topology_check(map_path))
 		return (1);
-	free_struct(img);
 	ft_printf("ERROR, EL MAPA FALLÓ\n");
 	return (0);
 }

@@ -56,12 +56,14 @@ int	ft_so_long(char *argv)
 	img->pj = 0;
 	img->exit = 0;
 	img->count_moves = 0;
+	img->y_len = 0;
+	img->x_len = 0;
 	ft_save_map(img, map_path);
 	printf("*img %p\n", img);
-
 	if (!ft_check_map(img, map_path))
-		return (0);
-	ft_show_things(img);
+		return (free_struct(img), 0);
+	else
+		ft_show_things(img);
 	return (0);
 }
 

@@ -19,7 +19,7 @@ int	ft_topology_check(char *map_path)
 	ft_flood_fill(copy_img, copy_img->y_pos, copy_img->x_pos);
 	printf("ft_copy_map %p\n", copy_img);
 	if (check_fill(copy_img))
-		return (1);
+		return (free_struct(copy_img), 1);
 	else
 		return (free_struct(copy_img), 0);
 }
@@ -110,7 +110,7 @@ int check_fill(t_image *copy_img)
 			if (FLOOD_FILL_CHARS(copy_img->map[y][x]) == 1)
 			{
 				ft_printf("NO SE CONECTA EL PJ, BATERIAS Y SALIDA\n");
-				return (free_struct(copy_img), 0);
+				return (0);
 			}
 			x++;
 		}

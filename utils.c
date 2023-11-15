@@ -19,6 +19,7 @@ void free_struct(t_image *img)
 {
 	if (!img)
 		return;
-	free_matrix(img->map, img);
+	if(img->y_len != -1 || img->x_len != -1)
+		free_matrix(img->map, img);
 	free(img);
 }
