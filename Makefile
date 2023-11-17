@@ -7,7 +7,7 @@ OBJS = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 #CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
-MLXFLAGS = -lmlx -framework OpenGL -framework AppKit -g3 -fsanitize=address
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit #-g3 -fsanitize=address
 
 
 LIBFT_DIR = ./Libft

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/17 04:56:37 by jde-clee          #+#    #+#             */
+/*   Updated: 2023/11/17 05:37:00 by jde-clee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	ft_topology_check(char *map_path)
 {
-	t_image *copy_img;
+	t_image		*copy_img;
 
 	copy_img = ft_copy_map(map_path);
 	if (!copy_img)
@@ -24,7 +36,7 @@ int	ft_topology_check(char *map_path)
 		return (free_struct(copy_img), 0);
 }
 
-t_image *ft_copy_map(char *map_path)
+t_image	*ft_copy_map(char *map_path)
 {
 	t_image	*copy_img;
 
@@ -43,31 +55,32 @@ t_image *ft_copy_map(char *map_path)
 
 void	ft_check_pj_pos(t_image *copy_img)
 {
-	int x;
-    int y;
+	int	x;
+	int	y;
 
 	x = 0;
-    y = 0;
-    while (y < copy_img->y_len)
-    {
-        x = 0;
-        while (x < copy_img->x_len)
-        {
-            if (copy_img->map[y][x] == 'P')
-            {
-                copy_img->x_pos = x;
-                copy_img->y_pos = y;
-                copy_img->pj += 1;
-            }
+	y = 0;
+	while (y < copy_img->y_len)
+	{
+		x = 0;
+		while (x < copy_img->x_len)
+		{
+			if (copy_img->map[y][x] == 'P')
+			{
+				copy_img->x_pos = x;
+				copy_img->y_pos = y;
+				copy_img->pj += 1;
+			}
 			if (copy_img->map[y][x] == 'C')
 				copy_img->battery += 1;
 			if (copy_img->map[y][x] == 'E')
 				copy_img->exit += 1;
-            x++;
-        }
-        y++;
-    }
+			x++;
+		}
+		y++;
+	}
 }
+
 void	ft_flood_fill(t_image *copy_img, int y, int x)
 {
 	if (FLOOD_FILL_CHARS(copy_img->map[y + 1][x]))
@@ -78,7 +91,6 @@ void	ft_flood_fill(t_image *copy_img, int y, int x)
 	if (FLOOD_FILL_CHARS(copy_img->map[y - 1][x]))
 	{
 		copy_img->map[y - 1][x] = 'P';
-
 		ft_flood_fill(copy_img, y - 1, x);
 	}
 	if (FLOOD_FILL_CHARS(copy_img->map[y][x + 1]))
@@ -93,14 +105,13 @@ void	ft_flood_fill(t_image *copy_img, int y, int x)
 	}
 }
 
-int check_fill(t_image *copy_img)
+int	check_fill(t_image *copy_img)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
-
 	while (y < copy_img->y_len)
 	{
 		x = 0;
