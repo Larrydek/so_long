@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:55:53 by jde-clee          #+#    #+#             */
-/*   Updated: 2023/11/17 06:07:00 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:23:32 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@
 # include "GNL/get_next_line.h"
 # include "Libft/libft.h"
 
-#  define FLOOD_FILL_CHARS(c) ((c == '0') || (c == 'C') || (c == 'E'))
-#  define CHECK_FILL_CHARS(c) ((c == 'C') || (c == 'E'))
-#  define MAP_CHARS(c) ((c == '0') || (c == 'C') || (c == 'E') || (c == 'P')|| (c == '\n') || (c == '1'))
+# define FLOOD_FILL_CHARS "CE0"
+# define CHECK_FILL_CHARS "CE"
+# define MAP_CHARS "CEP10\n"
 
-typedef struct s_data {
+typedef struct s_data
+{
 	void	*img;
 	void	*mlx;
 	void	*mlx_win;
