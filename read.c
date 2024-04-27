@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:55:57 by jde-clee          #+#    #+#             */
-/*   Updated: 2024/04/27 23:39:41 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/28 01:15:26 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	ft_save_map(t_image *img, char *path)
 	if (img->y_len > 0)
 	{
 		img->map = (char **)malloc(y * sizeof(char *));
-		printf("ft_save_map %p\n", img->map);
 		if (!img->map)
 			return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:56:40 by jde-clee          #+#    #+#             */
-/*   Updated: 2024/04/27 22:31:03 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/28 01:12:39 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ int	ft_check_map(t_image *img, char *map_path)
 	img->x_len = ft_x_axis(img);
 	if ((img->y_len < 2) || (img->x_len < 2))
 		return (0);
-	printf("CHECK_WALL X: %i\n", ft_check_wall_x(img));
-	printf("CHECK_WALL Y: %i\n", ft_check_wall_y(img));
 	if (ft_check_letters(img) && ft_check_wall_x(img)
 		&& ft_check_wall_y(img) && ft_topology_check(map_path))
 		return (1);
-	printf("ERROR, EL MAPA FALLÓ\n");
+	ft_printf("ERROR: EL MAPA FALLÓ\n");
 	return (0);
 }
 
@@ -89,6 +87,5 @@ int	ft_check_letters(t_image *img)
 		j = 0;
 		i++;
 	}
-	printf("CHECK LETTERS OK\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:56:37 by jde-clee          #+#    #+#             */
-/*   Updated: 2024/04/27 22:30:20 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/28 01:15:00 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ int	ft_topology_check(char *map_path)
 	ft_check_pj_pos(copy_img);
 	if (copy_img->battery == 0 | copy_img->pj != 1 | copy_img->exit != 1)
 	{
-		ft_printf("Error: Baterías, PJ o EXIT\n");
+		ft_printf("ERROR: Baterías, PJ o EXIT\n");
 		ft_printf("BATERÍAS: %i\n", copy_img->battery);
 		ft_printf("PJ: %i\n", copy_img->pj);
 		ft_printf("EXIT: %i\n", copy_img->exit);
 		return (free_struct(copy_img), 0);
 	}
 	ft_flood_fill(copy_img, copy_img->y_pos, copy_img->x_pos);
-	printf("ft_copy_map %p\n", copy_img);
 	if (check_fill(copy_img))
 		return (free_struct(copy_img), 1);
 	else
@@ -43,7 +42,6 @@ t_image	*ft_copy_map(char *map_path)
 	copy_img = (t_image *)malloc(sizeof(t_image));
 	if (!copy_img)
 		return (0);
-	printf("ft_copy_map %p\n", copy_img);
 	ft_save_map(copy_img, map_path);
 	copy_img->y_len = ft_y_axis(map_path);
 	copy_img->x_len = ft_x_axis(copy_img);
@@ -117,17 +115,12 @@ int	check_fill(t_image *copy_img)
 		x = 0;
 		while (x < copy_img->x_len)
 		{
-			ft_printf("%c", copy_img->map[y][x]);
 			if (ft_strchr(CHECK_FILL_CHARS, copy_img->map[y][x]))
-			{
-				ft_printf("NO SE CONECTA EL PJ, BATERIAS Y SALIDA\n");
-				return (0);
-			}
+				return (ft_printf("NO SE CONECTA EL PJ, BATERIAS Y SALIDA\n"), 0);
 			x++;
 		}
 		ft_printf("\n");
 		y++;
 	}
-	ft_printf("TODO BIEN PA\n");
 	return (1);
 }
