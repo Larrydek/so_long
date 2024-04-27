@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:55:48 by jde-clee          #+#    #+#             */
-/*   Updated: 2023/11/17 06:16:42 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/28 01:09:02 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ int	ft_so_long(char *argv)
 	img->count_moves = 0;
 	img->y_len = 0;
 	img->x_len = 0;
+	if ((open(map_path, O_RDONLY)) == -1)
+		return (free(img), ft_printf("NO HAY MAPA O NO PUEDE ABRIRSE\n"));
 	ft_save_map(img, map_path);
-	printf("*img %p\n", img);
 	if (!ft_check_map(img, map_path))
 	{
 		ft_printf("ERROR: EL MAPA NO CUMPLE CON LOS REQUISITOS\n");
@@ -71,18 +72,18 @@ int	ft_so_long(char *argv)
 		ft_show_things(img);
 	return (0);
 }
-
+/*
 void	leaks(void)
 {
 	system("leaks -q so_long");
 }
+*/
 
 int	main(int argc, char **argv)
 {
 	char	*map_format;
 
 	map_format = ".ber";
-	atexit(leaks);
 	if (argc != 2)
 	{
 		ft_printf("HAY ALGO MAL, TIENE QUE HABER 2 ARGUMENTOS\n");

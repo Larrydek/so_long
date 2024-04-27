@@ -34,7 +34,7 @@ $(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(GNL)
 	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) \
 	-L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf -L$(GNL_DIR) -lget_next_line -o $(NAME)
 
-%.o: %.c ./Libft/libft.h ./printf/libftprintf.h ./GNL/get_next_line.h
+%.o: %.c ./Libft/libft.h ./ft_printf/libftprintf.h ./GNL/get_next_line.h
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(GNL_DIR) -c $< -o $@
 
 clean:
