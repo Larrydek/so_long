@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:56:40 by jde-clee          #+#    #+#             */
-/*   Updated: 2024/04/27 20:58:42 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/27 22:31:03 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_check_letters(t_image *img)
 	{
 		while (j < img->x_len - 1)
 		{
-			if (ft_strchr(img->map[i][j]))
+			if (!ft_strchr(MAP_CHARS, img->map[i][j]))
 				return (0);
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:55:53 by jde-clee          #+#    #+#             */
-/*   Updated: 2024/04/27 21:23:32 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/27 22:33:30 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <stdlib.h>
-# include "printf/ft_printf.h"
+# include "ft_printf/ft_printf.h"
 # include "GNL/get_next_line.h"
 # include "Libft/libft.h"
 

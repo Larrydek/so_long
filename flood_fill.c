@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:56:37 by jde-clee          #+#    #+#             */
-/*   Updated: 2023/11/17 05:37:00 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/27 22:30:20 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,22 @@ void	ft_check_pj_pos(t_image *copy_img)
 
 void	ft_flood_fill(t_image *copy_img, int y, int x)
 {
-	if (FLOOD_FILL_CHARS(copy_img->map[y + 1][x]))
+	if (ft_strchr(FLOOD_FILL_CHARS, copy_img->map[y + 1][x]))
 	{
 		copy_img->map[y + 1][x] = 'P';
 		ft_flood_fill(copy_img, y + 1, x);
 	}
-	if (FLOOD_FILL_CHARS(copy_img->map[y - 1][x]))
+	if (ft_strchr(FLOOD_FILL_CHARS, copy_img->map[y - 1][x]))
 	{
 		copy_img->map[y - 1][x] = 'P';
 		ft_flood_fill(copy_img, y - 1, x);
 	}
-	if (FLOOD_FILL_CHARS(copy_img->map[y][x + 1]))
+	if (ft_strchr(FLOOD_FILL_CHARS, copy_img->map[y][x + 1]))
 	{
 		copy_img->map[y][x + 1] = 'P';
 		ft_flood_fill(copy_img, y, x + 1);
 	}
-	if (FLOOD_FILL_CHARS(copy_img->map[y][x - 1]))
+	if (ft_strchr(FLOOD_FILL_CHARS, copy_img->map[y][x - 1]))
 	{
 		copy_img->map[y][x - 1] = 'P';
 		ft_flood_fill(copy_img, y, x - 1);
@@ -118,7 +118,7 @@ int	check_fill(t_image *copy_img)
 		while (x < copy_img->x_len)
 		{
 			ft_printf("%c", copy_img->map[y][x]);
-			if (CHECK_FILL_CHARS(copy_img->map[y][x]) == 1)
+			if (ft_strchr(CHECK_FILL_CHARS, copy_img->map[y][x]))
 			{
 				ft_printf("NO SE CONECTA EL PJ, BATERIAS Y SALIDA\n");
 				return (0);

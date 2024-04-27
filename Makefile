@@ -13,7 +13,7 @@ MLXFLAGS = -lmlx -framework OpenGL -framework AppKit #-g3 -fsanitize=address
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-PRINTF_DIR = ./printf
+PRINTF_DIR = ./ft_printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 GNL_DIR = ./GNL

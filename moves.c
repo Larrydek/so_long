@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:56:28 by jde-clee          #+#    #+#             */
-/*   Updated: 2023/11/17 05:37:22 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/27 22:22:27 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_moves(int key, t_image *img)
 	ft_collector(img);
 	if (img->map[img->y_pos][img->x_pos] == 'E' && img->battery == 0)
 	{
-		ft_printf("GANASTE CAMPEÓN");
+		ft_printf("GANASTE CAMPEÓN\n");
 		free_and_close(img);
 	}
 }
