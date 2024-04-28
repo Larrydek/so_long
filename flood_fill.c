@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:56:37 by jde-clee          #+#    #+#             */
-/*   Updated: 2024/04/28 01:15:00 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/28 01:51:52 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,12 @@ int	check_fill(t_image *copy_img)
 		while (x < copy_img->x_len)
 		{
 			if (ft_strchr(CHECK_FILL_CHARS, copy_img->map[y][x]))
-				return (ft_printf("NO SE CONECTA EL PJ, BATERIAS Y SALIDA\n"), 0);
+			{
+				ft_printf("NO SE CONECTA EL PJ, BATERIAS Y SALIDA\n");
+				return (0);
+			}
 			x++;
 		}
-		ft_printf("\n");
 		y++;
 	}
 	return (1);

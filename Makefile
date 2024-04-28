@@ -6,7 +6,6 @@ OBJS = $(SRC:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-#CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit #-g3 -fsanitize=address
 
 
@@ -14,10 +13,10 @@ LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 PRINTF_DIR = ./ft_printf
-PRINTF = $(PRINTF_DIR)/libftprintf.a
+PRINTF = $(PRINTF_DIR)/libft_printf.a
 
 GNL_DIR = ./GNL
-GNL = $(GNL_DIR)/get_next_line.a
+GNL = $(GNL_DIR)/libget_next_line.a
 
 all: $(NAME)
 
@@ -32,10 +31,7 @@ $(GNL):
 
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(GNL)
 	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) \
-	-L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf -L$(GNL_DIR) -lget_next_line -o $(NAME)
-
-%.o: %.c ./Libft/libft.h ./ft_printf/libftprintf.h ./GNL/get_next_line.h
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(GNL_DIR) -c $< -o $@
+	-L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lft_printf -L$(GNL_DIR) -lget_next_line -o $(NAME)
 
 clean:
 	rm -f $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:55:57 by jde-clee          #+#    #+#             */
-/*   Updated: 2024/04/28 01:15:26 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/28 02:08:40 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_y_axis(char *path)
 		if (buffer[0] == '\n')
 			y++;
 	}
-	if (buffer[0] == '\n')
+	if (buffer[0] == '\n' || y > 28)
 		return (-1);
 	close(fd);
 	return (y);
@@ -47,6 +47,8 @@ int	ft_x_axis(t_image *img)
 	if ((!img->map) || (img->y_len < 2))
 		return (-1);
 	x_len = ft_strlen(img->map[0]);
+	if (x_len > 52)
+		return (0);
 	img->x_len = x_len;
 	if (img->y_len == 0)
 		return (0);

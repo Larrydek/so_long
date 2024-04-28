@@ -6,7 +6,7 @@
 /*   By: jde-clee <jde-clee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 04:55:48 by jde-clee          #+#    #+#             */
-/*   Updated: 2024/04/28 01:19:41 by jde-clee         ###   ########.fr       */
+/*   Updated: 2024/04/28 01:54:30 by jde-clee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_so_long(char *argv)
 	img->y_len = 0;
 	img->x_len = 0;
 	if ((open(map_path, O_RDONLY)) == -1)
-		return (free(img), ft_printf("ERROR: NO HAY MAPA O NO PUEDE ABRIRSE\n"));
+		return (free(img), ft_printf("ERROR: NO HAY MAPA/NO PUEDE ABRIRSE\n"));
 	ft_save_map(img, map_path);
 	if (!ft_check_map(img, map_path))
 	{

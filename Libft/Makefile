@@ -46,9 +46,6 @@ all: $(NAME)
 $(NAME): $(MY_OBJECTS)
 		$(LIB) $(NAME) $(MY_OBJECTS)
 
-%.o: %.c
-	gcc $(CFLAGS) -c $< -o $@ 
-
 clean: 
 	rm -f $(MY_OBJECTS)
 

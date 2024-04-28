@@ -7,13 +7,10 @@ SRC = get_next_line.c \
 
 OBJ = $(SRC:.c=.o)
 
-%.o: %.c
-	gcc $(CFLAGS) -c -o $@ $<
-
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-		ar rcs $(NAME) $(OBJ)
+		ar rc $(NAME) $(OBJ)
 
 clean:
 	@$(RM) $(OBJ)
